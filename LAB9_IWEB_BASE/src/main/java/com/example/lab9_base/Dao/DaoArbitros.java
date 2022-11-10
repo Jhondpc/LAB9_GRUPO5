@@ -14,9 +14,7 @@ public class DaoArbitros {
     }
 
     public void crearArbitro(Arbitro arbitro) {
-        /*
-        Inserte su código aquí
-        */
+
     }
 
     public ArrayList<Arbitro> busquedaPais(String pais) {
