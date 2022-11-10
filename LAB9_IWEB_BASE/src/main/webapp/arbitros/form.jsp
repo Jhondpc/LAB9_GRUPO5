@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.lab9_base.Bean.OpcionesArbitro" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -14,11 +16,18 @@
                     <form method="POST" action="<%=request.getContextPath()%>/ArbitroServlet?action=guardar">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" name="nombre">
+                            <input required type="text" class="form-control" name="nombre">
                         </div>
                         <div class="form-group">
                             <label>País</label>
-                            <select name="pais" class="form-control">
+                            <select required name="pais" class="form-control">
+                                <option value="">Seleccione una opción</option>
+                                <% for (OpcionesArbitro opcionesArbitro){}%>
+                                <option value="Alumno">Alumno</option>
+                                <option value="Administrativo">Administrativo</option>
+                                <option value="Jefe de practica">Jefe de práctica</option>
+                                <option value="Profesor">Profesor</option>
+                                <option value="Egresado">Egresado</option>
                                 <%--  COLOCAR LISTA DE PAÍSES BRINDADA EN EL SERVLET--%>
                             </select>
                         </div>
