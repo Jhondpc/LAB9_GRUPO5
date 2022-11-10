@@ -11,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "PartidoServlet", urlPatterns = {"/PartidoServlet", ""})
 public class PartidoServlet extends HttpServlet {
@@ -37,12 +38,23 @@ public class PartidoServlet extends HttpServlet {
                 arbitro.setIdArbitro(Integer.parseInt(request.getParameter("arbitro")));
                 partido.setArbitro(arbitro);
 
-                if(seleccionVisitante.getIdSeleccion()==seleccionLocal.getIdSeleccion()){
+                int centinela=0;
+
+                ArrayList<Partido> comparar=daoPartidos.listaDePartidos();
+                for (Partido partido1:comparar){
+                    if (partido1.getNumeroJornada()==Integer.parseInt(request.getParameter("jornada"))){
+                        centinela=1;
+                    }
+                }
+
+                if(seleccionVisitante.getIdSeleccion()==seleccionLocal.getIdSeleccion() || centinela==1 ){
                     response.sendRedirect(request.getContextPath()+"/PartidoServlet?action=crear");
                 }else{
                     daoPartidos.crearPartido(partido);
                     response.sendRedirect(request.getContextPath()+"/PartidoServlet");
                 }
+
+
 
                 break;
 
