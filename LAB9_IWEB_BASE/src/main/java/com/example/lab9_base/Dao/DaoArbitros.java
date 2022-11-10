@@ -81,14 +81,7 @@ public class DaoArbitros extends DaoBase {
         try(Connection connection = DriverManager.getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1,usuarios.getNombres());
-            pstmt.setString(2,usuarios.getApellidos());
-            pstmt.setString(3,usuarios.getDni());
-            pstmt.setString(4,usuarios.getCelular());
-            pstmt.setString(5,usuarios.getCodigoPucp());
-            pstmt.setString(6,usuarios.getCorreoPucp());
-            pstmt.setString(7,usuarios.getCategorias());
-            pstmt.setString(8,usuarios.getRol());
+
             pstmt.setNull(9, Types.VARCHAR);
 
             pstmt.executeUpdate();
