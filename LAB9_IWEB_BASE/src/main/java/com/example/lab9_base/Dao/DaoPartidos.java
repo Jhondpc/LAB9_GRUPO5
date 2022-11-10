@@ -80,4 +80,19 @@ public class DaoPartidos extends DaoBase {
         }
 
     }
+    public void borrarPartido(String id) {
+
+        String sql = "DELETE from partido WHERE idPartido = ?";
+
+        try(Connection connection = getConnection();
+            PreparedStatement pstmt=connection.prepareStatement(sql))
+        {
+
+            pstmt.setString(1,id);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

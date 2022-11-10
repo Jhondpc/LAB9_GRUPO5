@@ -51,6 +51,7 @@ public class PartidoServlet extends HttpServlet {
         DaoPartidos daoPartidos = new DaoPartidos();
         DaoSelecciones daoSelecciones = new DaoSelecciones();
         DaoArbitros daoArbitros = new DaoArbitros();
+        String idPartido;
         switch (action) {
             case "lista":
                 request.setAttribute("listaPartidos",daoPartidos.listaDePartidos());
@@ -62,6 +63,13 @@ public class PartidoServlet extends HttpServlet {
                 request.setAttribute("listaArbitros", daoArbitros.listarArbitros());
                 view = request.getRequestDispatcher("partidos/form.jsp");
                 view.forward(request, response);
+                break;
+
+            case "borrar":
+                idPartido = request.getParameter("id");
+                daoPartidos.borrarPartido(idPartido);
+
+                response.sendRedirect(request.getContextPath() + "/PartidoServlet");
                 break;
 
         }

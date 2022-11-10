@@ -35,16 +35,16 @@
                     <form method="POST" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
                         <div class="form-group">
                             <label>Jornada</label>
-                            <input type="number" class="form-control" name="jornada">
+                            <input required type="number" class="form-control" name="jornada">
                         </div>
                         <div class="form-group">
                             <label>Fecha</label>
-                            <input class="form-control datetimepicker" id="fecha" name="fecha"
+                            <input required class="form-control datetimepicker" id="fecha" name="fecha"
                                    type="date"/>
                         </div>
                         <div class="form-group">
                             <label>Selección local</label>
-                            <select name="local" class="form-control">
+                            <select required name="local" class="form-control">
                                 <% for(Seleccion seleccion: listaSelecciones){ %>
                                 <option value="<%=seleccion.getIdSeleccion()%>"><%=seleccion.getNombre()%></option>
                                 <% } %>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label>Selección Visitante</label>
-                            <select name="visitante" class="form-control">
+                            <select required name="visitante" class="form-control">
                                 <% for(Seleccion seleccion: listaSelecciones){ %>
                                 <option value="<%=seleccion.getIdSeleccion()%>"><%=seleccion.getNombre()%></option>
                                 <% } %>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             <label>Árbitro</label>
-                            <select name="arbitro" class="form-control">
+                            <select required name="arbitro" class="form-control">
                                 <% for(Arbitro arbitro: listaArbitros){ %>
                                 <option value="<%=arbitro.getIdArbitro()%>"><%=arbitro.getNombre()%></option>
                                 <% } %>

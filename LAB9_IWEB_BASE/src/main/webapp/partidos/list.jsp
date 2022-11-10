@@ -60,7 +60,7 @@
             <td><%=partido.getSeleccionLocal().getEstadio().getNombre()%></td>
             <td><%=partido.getArbitro().getNombre()%></td>
             <td>
-                <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=partido.getIdPartido()%>%>">
+                <a href="<%=request.getContextPath()%>/PartidoServlet?action=borrar&id=<%=partido.getIdPartido()%>">
                     Borrar
                 </a>
             </td>
