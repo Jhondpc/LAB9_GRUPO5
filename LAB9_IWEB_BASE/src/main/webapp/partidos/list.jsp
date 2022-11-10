@@ -41,22 +41,32 @@
     <table class="table">
         <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Pais</th>
-            <th></th>
+            <th>Jornada</th>
+            <th>Fecha</th>
+            <th>Selección Local</th>
+            <th>Selección Visitante</th>
+            <th>Estadio a jugar</th>
+            <th>Árbitro</th>
         </tr>
-        <%for (Partido partido: listaPartidos){%>
+        <%
+            int i=1;
+            for (Partido partido: listaPartidos){%>
         <tr>
-            <td><%=partido.getIdArbitro()%></td>
-            <td><%=arbitro.getNombre()%></td>
-            <td><%=arbitro.getPais()%></td>
+            <td><%=i%></td>
+            <td><%=partido.getNumeroJornada()%></td>
+            <td><%=partido.getFecha()%></td>
+            <td><%=partido.getSeleccionLocal().getNombre()%></td>
+            <td><%=partido.getSeleccionVisitante().getNombre()%></td>
+            <td><%=partido.getSeleccionLocal().getEstadio().getNombre()%></td>
+            <td><%=partido.getArbitro().getNombre()%></td>
             <td>
-                <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=arbitro.getIdArbitro()%>%>">
+                <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=partido.getIdPartido()%>%>">
                     Borrar
                 </a>
             </td>
 
-            <%}%>
+            <%i++;
+            }%>
         </tr>
     </table>
 </div>

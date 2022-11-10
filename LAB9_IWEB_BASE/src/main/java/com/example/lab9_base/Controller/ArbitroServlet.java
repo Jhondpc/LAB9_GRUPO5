@@ -36,7 +36,7 @@ public class ArbitroServlet extends HttpServlet {
                 arbitro.setNombre(request.getParameter("Nombre"));
                 arbitro.setPais(request.getParameter("Pais"));
 
-                daoArbitros.gu(usuarios);
+                //daoArbitros.gu(usuarios);
 
                 response.sendRedirect(request.getContextPath()+"/AdminServlet");
                 break;

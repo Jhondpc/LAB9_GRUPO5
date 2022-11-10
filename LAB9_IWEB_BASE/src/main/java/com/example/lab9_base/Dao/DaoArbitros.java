@@ -73,8 +73,8 @@ public class DaoArbitros extends DaoBase {
             throw new RuntimeException(e);
         }
     }
-
-    public void guardarArbitro(Arbitro arbitro){
+/*
+   public void guardarArbitro(Arbitro arbitro){
 
         String sql = "INSERT INTO arbitro (nombre, pais) VALUES (?,?)";
 
@@ -89,5 +89,5 @@ public class DaoArbitros extends DaoBase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+*/
 }

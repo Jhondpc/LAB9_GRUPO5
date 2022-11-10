@@ -1,4 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.example.lab9_base.Bean.Partido" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    ArrayList<Partido> listaPartidos = (ArrayList<Partido>) request.getAttribute("listaPartidos");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,21 +12,21 @@
         <title>LAB 9</title>
     </head>
     <body>
-        <nav id="navbar" class="navbar">
-            <div class="row">
-                <div class="col-md-6">
-                    Clasificatorias Sudamericanas Mundial 2026
-                </div>
-                <div class="col-md-3">
-                        <a class="nav-link scrollto active" href="<%=request.getContextPath()%>/PartidoServlet">Lista de partidos</a>
-                </div>
-                <div class="col-md-3">
-                        <a class="nav-link scrollto " href="<%=request.getContextPath()%>/ArbitroServlet">Lista de arbitros</a>
-                </div>
-
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand" href="#">Clasificatorias Sudamericanas Qatar 2022</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item" >
+                        <a class="nav-link" href="<%=request.getContextPath()%>/PartidoServlet">Partidos</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" href="<%=request.getContextPath()%>/ArbitroServlet">Arbitros</a>
+                    </li>
+                </ul>
             </div>
-
-
         </nav>
         <div class='container'>
             <div class="row mb-5 mt-4">
@@ -43,14 +48,25 @@
                     <th>Árbitro</th>
                 </tr>
 
+                <%
+                    int i=1;
+                    for (Partido partido: listaPartidos){%>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><%=i%></td>
+                    <td><%=partido.getNumeroJornada()%></td>
+                    <td><%=partido.getFecha()%></td>
+                    <td><%=partido.getSeleccionLocal().getNombre()%></td>
+                    <td><%=partido.getSeleccionVisitante().getNombre()%></td>
+                    <td><%=partido.getSeleccionLocal().getEstadio().getNombre()%></td>
+                    <td><%=partido.getArbitro().getNombre()%></td>
+                    <td>
+                        <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=partido.getIdPartido()%>%>">
+                            Borrar
+                        </a>
+                    </td>
+
+                    <%i++;
+                    }%>
                 </tr>
 
             </table>
