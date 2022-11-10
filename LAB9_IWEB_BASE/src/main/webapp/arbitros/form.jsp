@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.lab9_base.Bean.OpcionesArbitro" %>
+<%@ page import="com.example.lab9_base.Controller.ArbitroServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%ArrayList<OpcionesArbitro> listaPaises = (ArrayList<OpcionesArbitro>) request.getAttribute("listaPaises");%>
+<%ArrayList<ArbitroServlet> listaPaises = (ArrayList<ArbitroServlet>) request.getAttribute("listaPaises");%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

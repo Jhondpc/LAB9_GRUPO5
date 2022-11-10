@@ -1,12 +1,13 @@
 <%@ page import="com.example.lab9_base.Bean.Arbitro" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.lab9_base.Bean.OpcionesArbitro" %>
+<%@ page import="com.example.lab9_base.Controller.ArbitroServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     ArrayList<Arbitro> listaArbitros = (ArrayList<Arbitro>) request.getAttribute("listarArbitros");
-    ArrayList<OpcionesArbitro> listarFiltro = (ArrayList<OpcionesArbitro>) request.getAttribute("listarFiltro");
+    ArrayList<ArbitroServlet> listarFiltro= (ArrayList<ArbitroServlet>) request.getAttribute("listarFiltro");
 %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,18 +42,21 @@
                 </div>
                 <form method="post" action="<%= request.getContextPath()%>/ArbitroServlet?action=buscar" class="row">
                     <div class="col-lg-3">
-                        <select name="tipo" class="form-control">
-                            <%--                    ACA DEBE COLOCAR LA LISTA DE OPCIONES MOSTRADAS EN EL SERVLET--%>
+
+                        <select name="tipo" id="tipo" placeholder="tipo" class="form-control">
+                            <%for (int i=0;i<=listarFiltro.size()-1;i++){%>
+                            <option value="<%=listarFiltro.get(i)%>"><%=listarFiltro.get(i)%></option>
+                            <%}%>
                         </select>
                     </div>
                     <div class="col-lg-5">
-                        <input type="text" class="form-control" name="buscar">
+                        <input type="text" class="form-control" placeholder="Buscar" name="searchText">
                     </div>
                     <div class="col-lg-2">
                         <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                     <div class="col-lg-2">
-                        <a href="<%= request.getContextPath()%>/ArbitroServlet" class="btn btn-danger">Limpiar
+                        <a href="<%= request.getContextPath()%>/ArbitroServlet?action=lista" class="btn btn-danger">Limpiar
                             Búsqueda</a>
                     </div>
                 </form>
