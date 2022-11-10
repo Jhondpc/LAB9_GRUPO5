@@ -36,8 +36,14 @@ public class PartidoServlet extends HttpServlet {
                 Arbitro arbitro = new Arbitro();
                 arbitro.setIdArbitro(Integer.parseInt(request.getParameter("arbitro")));
                 partido.setArbitro(arbitro);
-                daoPartidos.crearPartido(partido);
-                response.sendRedirect("PartidoServlet");
+
+                if(seleccionVisitante.getIdSeleccion()==seleccionLocal.getIdSeleccion()){
+                    response.sendRedirect(request.getContextPath()+"/PartidoServlet?action=crear");
+                }else{
+                    daoPartidos.crearPartido(partido);
+                    response.sendRedirect(request.getContextPath()+"/PartidoServlet");
+                }
+
                 break;
 
         }
