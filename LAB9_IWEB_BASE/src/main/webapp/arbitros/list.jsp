@@ -12,6 +12,22 @@
         <title>LAB 9</title>
     </head>
     <body>
+        <nav id="navbar" class="navbar">
+            <div class="row">
+                <div class="col-md-6">
+                    Clasificatorias Sudamericanas Mundial 2026
+                </div>
+                <div class="col-md-3">
+                    <a class="nav-link scrollto active" href="<%=request.getContextPath()%>/PartidoServlet">Lista de partidos</a>
+                </div>
+                <div class="col-md-3">
+                    <a class="nav-link scrollto " href="<%=request.getContextPath()%>/ArbitroServlet">Lista de arbitros</a>
+                </div>
+
+            </div>
+
+
+        </nav>
         <div class='container'>
             <div class="row mb-5 mt-4">
                 <div class="col-lg-6">

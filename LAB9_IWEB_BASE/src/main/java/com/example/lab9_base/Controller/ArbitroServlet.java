@@ -16,6 +16,8 @@ public class ArbitroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
+        Arbitro arbitro=new Arbitro();
+        DaoArbitros daoArbitros=new DaoArbitros();
         RequestDispatcher view;
         ArrayList<String> opciones = new ArrayList<>();
         opciones.add("nombre");
@@ -31,7 +33,12 @@ public class ArbitroServlet extends HttpServlet {
 
             case "guardar":
 
+                arbitro.setNombre(request.getParameter("Nombre"));
+                arbitro.setPais(request.getParameter("Pais"));
 
+                daoArbitros.gu(usuarios);
+
+                response.sendRedirect(request.getContextPath()+"/AdminServlet");
                 break;
 
         }
