@@ -1,9 +1,11 @@
 <%@ page import="com.example.lab9_base.Bean.Arbitro" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.lab9_base.Bean.OpcionesArbitro" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     ArrayList<Arbitro> listaArbitros = (ArrayList<Arbitro>) request.getAttribute("listarArbitros");
+    ArrayList<OpcionesArbitro> listarFiltro = (ArrayList<OpcionesArbitro>) request.getAttribute("listarFiltro");
 %>
 <html>
     <head>
@@ -68,7 +70,7 @@
                     <td><%=arbitro.getNombre()%></td>
                     <td><%=arbitro.getPais()%></td>
                     <td>
-                        <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=arbitro.getIdArbitro()%>%>">
+                        <a href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=arbitro.getIdArbitro()%>">
                             Borrar
                         </a>
                     </td>

@@ -73,21 +73,55 @@ public class DaoArbitros extends DaoBase {
             throw new RuntimeException(e);
         }
     }
-/*
-   public void guardarArbitro(Arbitro arbitro){
 
-        String sql = "INSERT INTO arbitro (nombre, pais) VALUES (?,?)";
+   public void guardarArbitro(Arbitro arbitro) {
 
-        try(Connection connection = DriverManager.getConnection();
+       String sql = "INSERT INTO arbitro (nombre, pais) VALUES (?,?)";
+
+       try (Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
+           System.out.println(arbitro.getNombre());
+           pstmt.setString(1, arbitro.getNombre());
+           pstmt.setString(2, arbitro.getPais());
 
-            pstmt.setNull(9, Types.VARCHAR);
 
-            pstmt.executeUpdate();
+           pstmt.executeUpdate();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+       } catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
+   }
+
+    public ArrayList<Arbitro> buscarArbitro(String buscador,String elementoTabla){
+        ArrayList<Arbitro> listaArbitros = new ArrayList<>();
+
+        String sql = "SELECT * FROM arbitro WHERE lower("+elementoTabla+") like ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%"+buscador+"%");
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    Arbitro arbitro = new Arbitro();
+
+                    arbitro.setIdArbitro(rs.getInt(1));
+                    arbitro.setNombre(rs.getString(2));
+                    arbitro.setPais(rs.getString(3));
+
+                    listaArbitros.add(arbitro);
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
         }
-*/
+
+        return listaArbitros;
+    }
+
+
 }

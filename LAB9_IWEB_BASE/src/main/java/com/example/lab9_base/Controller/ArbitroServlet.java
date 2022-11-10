@@ -26,19 +26,24 @@ public class ArbitroServlet extends HttpServlet {
         switch (action) {
 
             case "buscar":
-                /*
-                Inserte su código aquí
-                */
+
+                /*String searchText = request.getParameter("searchText");
+
+                dArrayList<Arbitro> lista = aoArbitros.buscarUsuarios(searchText);
+                request.setAttribute("lista", lista);
+
+                requestDispatcher = request.getRequestDispatcher("AdminListaUsers.jsp");
+                requestDispatcher.forward(request, response);*/
                 break;
 
             case "guardar":
 
-                arbitro.setNombre(request.getParameter("Nombre"));
+                arbitro.setNombre(request.getParameter("Nombres"));
                 arbitro.setPais(request.getParameter("Pais"));
 
-                //daoArbitros.gu(usuarios);
+                daoArbitros.guardarArbitro(arbitro);
 
-                response.sendRedirect(request.getContextPath()+"/AdminServlet");
+                response.sendRedirect(request.getContextPath()+"/ArbitroServlet");
                 break;
 
         }
@@ -68,10 +73,12 @@ public class ArbitroServlet extends HttpServlet {
         switch (action) {
             case "lista":
                 request.setAttribute("listarArbitros", daoArbitros.listarArbitros());
+                request.setAttribute("listarFiltro",opcionesArbitro.getListaOpciones());
                 view = request.getRequestDispatcher("/arbitros/list.jsp");
                 view.forward(request, response);
                 break;
             case "crear":
+                request.setAttribute("listaPaises", opcionesArbitro.getListaPaises());
                 view = request.getRequestDispatcher("/arbitros/form.jsp");
                 view.forward(request, response);
                 break;

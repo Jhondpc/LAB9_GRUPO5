@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.lab9_base.Bean.OpcionesArbitro" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%ArrayList<OpcionesArbitro> listaPaises = (ArrayList<OpcionesArbitro>) request.getAttribute("listaPaises");%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,28 +10,26 @@
     </head>
     <body>
         <div class='container'>
+
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
                     <h1 class='mb-3'>Crear un Árbitro</h1>
-                    <form method="POST" action="<%=request.getContextPath()%>/ArbitroServlet?action=guardar">
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input required type="text" class="form-control" name="nombre">
+                    <form method="post" action="<%=request.getContextPath()%>/ArbitroServlet?action=guardar">
+                        <div >
+                            <label for="Nombres" >Nombre</label>
+                            <input required type="text" class="form-control" name="Nombres" id="Nombres" placeholder="Nombres">
                         </div>
-                        <div class="form-group">
-                            <label>País</label>
-                            <select required name="pais" class="form-control">
+                        <div >
+                            <label for="Pais">País</label>
+                            <select required name="Pais" id="Pais" placeholder="Pais" class="form-control">
                                 <option value="">Seleccione una opción</option>
-                                <% for (OpcionesArbitro opcionesArbitro){}%>
-                                <option value="Alumno">Alumno</option>
-                                <option value="Administrativo">Administrativo</option>
-                                <option value="Jefe de practica">Jefe de práctica</option>
-                                <option value="Profesor">Profesor</option>
-                                <option value="Egresado">Egresado</option>
-                                <%--  COLOCAR LISTA DE PAÍSES BRINDADA EN EL SERVLET--%>
+                                <%for (int i=0;i<=listaPaises.size()-1;i++){%>
+                                <option value="<%=listaPaises.get(i)%>"><%=listaPaises.get(i)%></option>
+                                <%}%>
                             </select>
                         </div>
+                        <br>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <a href="<%= request.getContextPath()%>/ArbitroServlet" class="btn btn-danger">Cancelar</a>
                     </form>
